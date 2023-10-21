@@ -1,5 +1,5 @@
 # AssemblerPlayground
-- Learning the use of asm through exercise and working my way to be able to understand reverse engeneering part 1.
+- Learning the use of asm through exercise and working my way to be able to understand reverse engeneering.
   - In rec.asm I go through the basic hello world type exercise and a basic(not so intuitive) for loop :)
   - In math.asm I implement functions using proc and endp and define arrays of numbers to go through and find different things:
     - a -> find the prime numbers
@@ -9,3 +9,5 @@
     - cdecl -> caller frees stack, parameters are pushed in reverse order and the return value is in EAX. (default for C/C++ functions), usefull for function whose nr of args we don t know.
     - stdcall -> callee is responsible for cleaning of the stack, parameters are pushed in reverse order, returns in EAX, stack is balanced being cleaned by callee. Usefull for windowsAPI
     - fastcall -> puts some of the arguments directly in registers (ECX EDX), callee cleans stack, way faster and returns in EAX.
+  - Through the BMP parser written in C I mendled with and got a grasp on the windowsApi functions that let you interact at a low level with the so kernel. going further I also learned more about the structure of the BMP format extracted some information from certain offsets, showed the pixels and made some colors change in the format RGB that the pixels are created for.
+      - Part of the integrity of this parser is the way it is setup before opeining up the file, for this action i make sure to check the file i am trying to open is  given as argument to the programme(properties pass it in debugger options- the bmp file), I check if the mapping was recieved correctly, the low and high file sizes obtain from the header handle are also checked. Only after all these checks i try (in case it fails i print the error) to retrieve the buffer. After the buffer is recieved i check that the first 2 addresses are of value BM to confirm that the file is of desired format. After all these checks I continue with the parsing process.
